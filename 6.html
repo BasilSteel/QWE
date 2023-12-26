@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список с LocalStorage</title>
+</head>
+<body>
+
+<h2>Список задач</h2>
+<input type="text" id="newTask" placeholder="Введите новую задачу">
+<button onclick="добавитьЗадачу()">Добавить</button>
+
+<ul id="списокЗадач"></ul>
+
+<script>
+    // Функция для добавления задачи
+    function добавитьЗадачу() {
+        var новаяЗадача = document.getElementById('newTask').value;
+        if (новаяЗадача.trim() === '') {
+            alert('Введите задачу.');
+            return;
+        }
+
+        // Получаем текущий список задач из LocalStorage или создаем новый массив
+        var текущийСписок = JSON.parse(localStorage.getItem('списокЗадач')) || [];
+
+        // Добавляем новую задачу в список
+        текущийСписок.push(новаяЗадача);
+
+        // Сохраняем обновленный список в LocalStorage
+        localStorage.setItem('списокЗадач', JSON.stringify(текущийСписок));
+
+        // Обновляем отображение списка
+        отобразитьСписок();
+    }
+
+    // Функция для удаления задачи
+    function удалитьЗадачу(индекс) {
+        var текущийСписок = JSON.parse(localStorage.getItem('списокЗадач'));
+
+        // Удаляем задачу по индексу
+        текущийСписок.splice(индекс, 1);
+
+        // Сохраняем обновленный список в LocalStorage
+        localStorage.setItem('списокЗадач', JSON.stringify(текущийСписок));
+
+        // Обновляем отображение списка
+        отобразитьСписок();
+    }
+
+    // Функция для отображения списка задач
+    function отобразитьСписок() {
+        var текущийСписок = JSON.parse(localStorage.getItem('списокЗадач')) || [];
+        var списокЭлемент = document.getElementById('списокЗадач');
+        списокЭлемент.innerHTML = '';
+
+        // Создаем элементы списка для каждой задачи
+        текущийСписок.forEach(function(задача, индекс) {
+            var элементСписка = document.createElement('li');
+            элементСписка.textContent = задача;
+
+            var кнопкаУдаления = document.createElement('button');
+            кнопкаУдаления.textContent = 'Удалить';
+            кнопкаУдаления.onclick = function() {
+                удалитьЗадачу(индекс);
+            };
+
+            элементСписка.appendChild(кнопкаУдаления);
+            списокЭлемент.appendChild(элементСписка);
+        });
+    }
+
+    // При загрузке страницы сразу отобразим текущий список
+    отобразитьСписок();
+</script>
+
+</body>
+</html>

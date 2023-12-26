@@ -1,0 +1,42 @@
+Таблица "Сотрудники":
+
+id (int, primary key)
+имя (varchar)
+дата_рождения (date)
+должность_id (int, foreign key references Должности(id))
+Таблица "Документы":
+
+id (int, primary key)
+тип_документа (varchar)
+номер_документа (varchar)
+сотрудник_id (int, foreign key references Сотрудники(id))
+Таблица "Должности":
+
+id (int, primary key)
+название (varchar)
+оклад (decimal)
+
+-- Создание таблицы "Сотрудники"
+CREATE TABLE Сотрудники (
+    id INT PRIMARY KEY,
+    имя VARCHAR(50),
+    дата_рождения DATE,
+    должность_id INT,
+    FOREIGN KEY (должность_id) REFERENCES Должности(id)
+);
+
+-- Создание таблицы "Документы"
+CREATE TABLE Документы (
+    id INT PRIMARY KEY,
+    тип_документа VARCHAR(50),
+    номер_документа VARCHAR(20),
+    сотрудник_id INT,
+    FOREIGN KEY (сотрудник_id) REFERENCES Сотрудники(id)
+);
+
+-- Создание таблицы "Должности"
+CREATE TABLE Должности (
+    id INT PRIMARY KEY,
+    название VARCHAR(50),
+    оклад DECIMAL(10, 2)
+);

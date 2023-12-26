@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Операции с числами</title>
+</head>
+<body>
+
+<script>
+    function выполнитьОперации(a, b) {
+        // Сложение
+        var сумма = a + b;
+        console.log('Сложение:', сумма);
+
+        // Вычитание
+        var разность = a - b;
+        console.log('Вычитание:', разность);
+
+        // Умножение
+        var произведение = a * b;
+        console.log('Умножение:', произведение);
+
+        // Деление (проверка деления на ноль)
+        if (b !== 0) {
+            var частное = a / b;
+            console.log('Деление:', частное);
+        } else {
+            console.log('Деление на ноль невозможно.');
+        }
+    }
+
+    // Пример использования функции
+    выполнитьОперации(10, 5);
+</script>
+
+</body>
+</html>

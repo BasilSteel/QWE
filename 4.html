@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сумма элементов массива</title>
+</head>
+<body>
+
+<script>
+    // Создаем массив из чисел
+    var числаМассива = [5, 10, 15, 20, 25];
+
+    // Функция для вычисления суммы элементов массива
+    function вычислитьСумму(массив) {
+        var сумма = 0;
+        for (var i = 0; i < массив.length; i++) {
+            сумма += массив[i];
+        }
+        return сумма;
+    }
+
+    // Выводим результат в консоль
+    console.log('Массив:', числаМассива);
+    console.log('Сумма элементов массива:', вычислитьСумму(числаМассива));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,17 @@
+-- Таблица "Пользователи"
+CREATE TABLE Пользователи (
+    id INT PRIMARY KEY,
+    имя VARCHAR(50),
+    возраст INT,
+    электронная_почта VARCHAR(100) UNIQUE,
+    дата_регистрации DATE
+);
+
+-- Таблица "Продукты"
+CREATE TABLE Продукты (
+    id INT PRIMARY KEY,
+    название VARCHAR(100),
+    цена DECIMAL(10, 2),
+    количество INT,
+    дата_добавления TIMESTAMP
+);

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch API Пример</title>
+</head>
+<body>
+
+<h2>Результат запроса:</h2>
+<div id="результат"></div>
+
+<script>
+    // URL внешнего ресурса
+    var url = 'https://jsonplaceholder.typicode.com/posts/1';
+
+    // Отправляем GET-запрос с использованием Fetch API
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            // Обрабатываем полученные данные и отображаем на странице
+            отобразитьРезультат(data);
+        })
+        .catch(error => {
+            console.error('Ошибка запроса:', error);
+            отобразитьРезультат('Ошибка запроса. Пожалуйста, проверьте консоль для деталей.');
+        });
+
+    // Функция для отображения результата на странице
+    function отобразитьРезультат(data) {
+        var результатЭлемент = document.getElementById('результат');
+
+        // Проверка на наличие ошибки
+        if (typeof data === 'object' && 'title' in data) {
+            результатЭлемент.textContent = 'Заголовок: ' + data.title;
+        } else {
+            результатЭлемент.textContent = 'Не удалось получить данные.';
+        }
+    }
+</script>
+
+</body>
+</html>

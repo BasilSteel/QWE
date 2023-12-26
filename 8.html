@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивный опыт</title>
+    <style>
+        #интерактивныйЭлемент {
+            width: 200px;
+            height: 100px;
+            background-color: lightblue;
+            text-align: center;
+            line-height: 100px;
+            cursor: pointer;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="интерактивныйЭлемент">Наведите мышь!</div>
+<button onclick="показатьСообщение()">Кликните меня</button>
+
+<script>
+    // Интерактивный элемент
+    var интерактивныйЭлемент = document.getElementById('интерактивныйЭлемент');
+
+    // Обработчики событий мыши
+    интерактивныйЭлемент.addEventListener('mouseover', function() {
+        изменитьЦвет('red');
+    });
+
+    интерактивныйЭлемент.addEventListener('mouseout', function() {
+        изменитьЦвет('lightblue');
+    });
+
+    // Обработчик события клика
+    интерактивныйЭлемент.addEventListener('click', function() {
+        показатьСообщение('Вы кликнули на элемент!');
+    });
+
+    // Обработчик события нажатия клавиши
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Enter') {
+            показатьСообщение('Вы нажали клавишу Enter!');
+        }
+    });
+
+    // Функция для изменения цвета элемента
+    function изменитьЦвет(цвет) {
+        интерактивныйЭлемент.style.backgroundColor = цвет;
+    }
+
+    // Функция для отображения сообщения
+    function показатьСообщение(сообщение) {
+        alert(сообщение);
+    }
+</script>
+
+</body>
+</html>

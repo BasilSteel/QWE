@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Добавление элементов в список</title>
+</head>
+<body>
+
+<h2>Список элементов:</h2>
+<ul id="списокЭлементов"></ul>
+
+<input type="text" id="новыйЭлемент" placeholder="Введите новый элемент">
+<button onclick="добавитьЭлемент()">Добавить</button>
+
+<script>
+    // Функция для добавления элемента в список
+    function добавитьЭлемент() {
+        var новыйЭлемент = document.getElementById('новыйЭлемент').value;
+
+        if (новыйЭлемент.trim() === '') {
+            alert('Введите текст элемента.');
+            return;
+        }
+
+        // Получаем текущий список элементов из LocalStorage или создаем новый массив
+        var текущийСписок = JSON.parse(localStorage.getItem('списокЭлементов')) || [];
+
+        // Добавляем новый элемент в список
+        текущийСписок.push(новыйЭлемент);
+
+        // Сохраняем обновленный список в LocalStorage
+        localStorage.setItem('списокЭлементов', JSON.stringify(текущийСписок));
+
+        // Обновляем отображение списка
+        отобразитьСписок();
+    }
+
+    // Функция для отображения списка элементов
+    function отобразитьСписок() {
+        var текущийСписок = JSON.parse(localStorage.getItem('списокЭлементов')) || [];
+        var списокЭлемент = document.getElementById('списокЭлементов');
+        списокЭлемент.innerHTML = '';
+
+        // Создаем элементы списка для каждого элемента
+        текущийСписок.forEach(function(элемент) {
+            var элементСписка = document.createElement('li');
+            элементСписка.textContent = элемент;
+            списокЭлемент.appendChild(элементСписка);
+        });
+    }
+
+    // При загрузке страницы сразу отобразим текущий список
+    отобразитьСписок();
+</script>
+
+</body>
+</html>

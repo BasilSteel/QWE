@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Определение знака числа</title>
+</head>
+<body>
+
+<script>
+    // Функция для определения знака числа
+    function определитьЗнак(число) {
+        if (число > 0) {
+            return 'Число положительное';
+        } else if (число < 0) {
+            return 'Число отрицательное';
+        } else {
+            return 'Число равно нулю';
+        }
+    }
+
+    // Пример использования функции
+    var тестовоеЧисло = 42;
+    console.log(определитьЗнак(тестовоеЧисло));
+</script>
+
+</body>
+</html>
